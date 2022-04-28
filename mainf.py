@@ -21,8 +21,17 @@ class Constant:
 # then make a functin that takes base64 encoded string and returns a tuple of 3 ints
 def to_int_tuples(string):
  # var for testing
- takeinp = "a"
- # then get the ord of the character
- ordCar = ord(takeinp)-97
- # 
+ takeinp = "abcdefg"
+ # make a for loop that will loop through takeinp and every 4 characters add a & to it
+ # split takeinp into a list of strings that split every 4 characters
+ charactersList = [takeinp[(x-1)*4:x*4] for x in range(int(len(takeinp)/4))][1:]
+ # then have four for loop because there is only going to be four inps at a time
+ for xa in []:
+  for xb in []:
+   for xc in []:
+    for xd in []:
+     pass
+
+ 
+
 

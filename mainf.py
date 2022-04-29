@@ -17,21 +17,18 @@ class Constant:
  char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789="
  abas = "abcdefghijklmnopqrstuvwxyz"
 
+# function to turn leetters to numbers
+def nTL(strings): return [x-47 for x in strings]
 
-# then make a functin that takes base64 encoded string and returns a tuple of 3 ints
-def to_int_tuples(string):
- # var for testing
- takeinp = "abcdefg"
- # make a for loop that will loop through takeinp and every 4 characters add a & to it
- # split takeinp into a list of strings that split every 4 characters
- charactersList = [takeinp[(x-1)*4:x*4] for x in range(int(len(takeinp)/4))][1:]
- # then have four for loop because there is only going to be four inps at a time
- for xa in []:
-  for xb in []:
-   for xc in []:
-    for xd in []:
-     pass
+def TnL(lists): return [chr(x+47) for x in lists]
 
- 
+# funtion to get a list of four numbers
+def fourNumber(lists): return sum([x*63 for x in lists[:-1]])+lists[-1]
 
+# then make a functin that takes base64 encoded string and returns a list of chars in groups of 4
+def toFourLists(lists): return [xa for xa in [lists[(x-1)*4:x*4] for x in range(int(len(lists)/2))] if xa != []]
 
+# return the valeus
+def valeus(strings): return [fourNumber(x) for x in (toFourLists(nTL(to_base64(strings))))]
+
+print(valeus("yesgdsfas"))

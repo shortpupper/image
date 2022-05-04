@@ -5,7 +5,8 @@ import os
 import time
 # need to edit images so import pillow
 from PIL import Image
-
+# round numbers better
+import math
 
 # then make a function that will convert str to byte to base64
 def to_base64(string):
@@ -54,15 +55,18 @@ def outrgd(listg): return [y for x in listg for y in x]
 # function to make it encdoe?
 def torun(strings): return torgd(toasciis(mobd(strings)))
 
+# function to decode the list?
+def unrun(listg): return outasciis(outrgd(listg))
+
 # function to take a list and add to it to make a image size
 def toimage(listg, size): return listg+[(61,)*3 for x in range((size[0]*size[1])-len(listg))]
 
 # function to make a new image from name and size
 def newimage(name, size):
  # make a new image
- Image.new("RGB", size)
+ im = Image.new("RGB", size)
  # now save the image
- Image.save(name)
+ im.save(name)
 
 # function to put the data into the image and save it
 def putimage(listg, name):
@@ -73,17 +77,37 @@ def putimage(listg, name):
   # then save
   im.save(name)
 
+# read an image
+def getimagedata(name):
+ with Image.open(name) as im: return list(im.getdata())
+
+# then a decode the data and return a string
+def readimage(name): return unrun(getimagedata(name))
 
 #r0 = torun("yes food")
 
-text = "I love food yes me and this test"
+text = "I love food yes me and th4is 1554547456711121222"
 
-name = os.getcwd()+"/test1.jpg"
+name = os.getcwd()+"/test7.jpg"
 
-size = (round(len(text) / 2),)*2 # you might have to divide by 3
+data1 = torun(text)
 
-data = toimage(torun(text), size)
+size = (math.ceil(math.sqrt(len(data1))),)*2
+
+data = toimage(data1, size)
+
+# make a new image and put data there
+newimage(name, size)
+putimage(data, name)
+
+# print(readimage(name))
 
 
 
+# print(data)
+# print(len(data))
+# print(len(data1))
 
+# print(size)
+# print(len(text))
+# print(len(text)/3)

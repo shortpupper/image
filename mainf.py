@@ -1,7 +1,10 @@
 # want to import base64
 import base64
+import os
 # will need the time so import time
 import time
+# need to edit images so import pillow
+from PIL import Image
 
 
 # then make a function that will convert str to byte to base64
@@ -51,21 +54,35 @@ def outrgd(listg): return [y for x in listg for y in x]
 # function to make it encdoe?
 def torun(strings): return torgd(toasciis(mobd(strings)))
 
-# k0 = 'yes food is the goodss'
-# k1 = mobd(k0)
-# k2 = toasciis(k1)
-# k3 = outasciis(k2)
-# k4 = torgd(k2)
-# k5 = outrgd(k4)
+# function to take a list and add to it to make a image size
+def toimage(listg, size): return listg+[(61,)*3 for x in range((size[0]*size[1])-len(listg))]
 
-# print(k0)
-# print(k1)
-# print(k2)
-# #print(k3)
-# print(k4)
-# #print(k5)
+# function to make a new image from name and size
+def newimage(name, size):
+ # make a new image
+ Image.new("RGB", size)
+ # now save the image
+ Image.save(name)
 
-r0 = torun("yes food")
+# function to put the data into the image and save it
+def putimage(listg, name):
+ # open the image
+ with Image.open(name) as im:
+  # then write the data
+  im.putdata(listg)
+  # then save
+  im.save(name)
+
+
+#r0 = torun("yes food")
+
+text = "I love food yes me and this test"
+
+name = os.getcwd()+"/test1.jpg"
+
+size = (round(len(text) / 2),)*2 # you might have to divide by 3
+
+data = toimage(torun(text), size)
 
 
 

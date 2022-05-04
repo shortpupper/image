@@ -31,4 +31,42 @@ def toFourLists(lists): return [xa for xa in [lists[(x-1)*4:x*4] for x in range(
 # return the valeus
 def valeus(strings): return [fourNumber(x) for x in (toFourLists(nTL(to_base64(strings))))]
 
-print(valeus("yesgdsfas"))
+#print(valeus("-asdfyes"))
+
+# function to test if string is disable by 3
+def mobd(strg):
+ strgd = strg
+ for x in range(4):
+  if not len(strgd) % 3: return strgd
+  else: strgd += "="
+
+# function that just turn a string to a list of ascii numbers
+def toasciis(strg): return [ord(x) for x in strg]
+def outasciis(listg): return ''.join([chr(x) for x in listg])
+
+# functon to take a list and every 3 make it a tuple
+def torgd(listg): return [(listg[x], listg[x+1], listg[x+2]) for x in range(0, len(listg), 3)]
+def outrgd(listg): return [y for x in listg for y in x]
+
+# function to make it encdoe?
+def torun(strings): return torgd(toasciis(mobd(strings)))
+
+# k0 = 'yes food is the goodss'
+# k1 = mobd(k0)
+# k2 = toasciis(k1)
+# k3 = outasciis(k2)
+# k4 = torgd(k2)
+# k5 = outrgd(k4)
+
+# print(k0)
+# print(k1)
+# print(k2)
+# #print(k3)
+# print(k4)
+# #print(k5)
+
+r0 = torun("yes food")
+
+
+
+

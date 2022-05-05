@@ -72,9 +72,10 @@ def newimage(name, size):
 def putimage(listg, name):
  # open the image
  with Image.open(name) as im:
-  # get the image size
+  # do
+  f = [((xa, ya), listg[xa+ya*im.height]) for xa in range(im.width) for ya in range(im.height)]
   # then write the data
-  [[im.putpixel((xa, ya), listg[xa+ya*im.height]) for xa in range(im.width)] for ya in range(im.height)]
+  [im.putpixel(v[0], v[1]) for v in f]
   # then save
   im.save(name)
 
@@ -87,9 +88,9 @@ def readimage(name): return unrun(getimagedata(name))
 
 #r0 = torun("yes food")
 
-text = "1234"
+text = "1234567891121"
 
-name = os.getcwd()+"/test11.jpg"
+name = os.getcwd()+"/test11.png"
 
 data1 = torun(text)
 
@@ -98,16 +99,11 @@ size = (math.ceil(math.sqrt(len(data1))),)*2
 data = toimage(data1, size)
 
 # make a new image and put data there
-# newimage(name, size)
+newimage(name, size)
 putimage(data, name)
 
-#print(readimage(name))
+print(readimage(name))
 
-print(outrgd(getimagedata(name)))
-
-print(data)
-
-print(getimagedata(name))
 # print(data)
 # print(len(data))
 # print(len(data1))

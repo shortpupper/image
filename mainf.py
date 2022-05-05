@@ -46,7 +46,7 @@ def mobd(strg):
 
 # function that just turn a string to a list of ascii numbers
 def toasciis(strg): return [ord(x) for x in strg]
-def outasciis(listg): return ''.join([chr(x) for x in listg])
+def outasciis(listg): return b''.join([chr(ord(chr(x))).encode("utf-8") for x in listg])
 
 # functon to take a list and every 3 make it a tuple
 def torgd(listg): return [(listg[x], listg[x+1], listg[x+2]) for x in range(0, len(listg), 3)]
@@ -86,28 +86,16 @@ def getimagedata(name):
 # then a decode the data and return a string
 def readimage(name): return unrun(getimagedata(name))
 
-#r0 = torun("yes food")
-
-text = "1234567891121"
-
-name = os.getcwd()+"/test11.png"
-
-data1 = torun(text)
-
-size = (math.ceil(math.sqrt(len(data1))),)*2
-
-data = toimage(data1, size)
-
 # make a new image and put data there
-newimage(name, size)
-putimage(data, name)
+def doimage(text, name):
+ name = name+".png"
+ data1 = torun(text)
+ size = (math.ceil(math.sqrt(len(data1))),)*2
+ data = toimage(data1, size)
+ newimage(name, size)
+ putimage(data, name)
 
-print(readimage(name))
+h = "{}".format(readimage(os.getcwd()+"/mon.png"))[2:-1]
+print(type(h), h.replace("\\", "\ "[:-1]))
 
-# print(data)
-# print(len(data))
-# print(len(data1))
 
-# print(size)
-# print(len(text))
-# print(len(text)/3)

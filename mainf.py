@@ -7,6 +7,8 @@ import time
 from PIL import Image
 # round numbers better
 import math
+# needed for things
+import requests
 
 # then make a function that will convert str to byte to base64
 def to_base64(string):
@@ -95,7 +97,20 @@ def doimage(text, name):
  newimage(name, size)
  putimage(data, name)
 
-h = "{}".format(readimage(os.getcwd()+"/mon.png"))[2:-1]
-print(type(h), h.replace("\\", "\ "[:-1]))
 
-#https://gist.githubusercontent.com/MattIPv4/045239bc27b16b2bcf7a3a9a4648c08a/raw/2411e31293a35f3e565f61e7490a806d4720ea7e/bee%2520movie%2520script
+# function to read the bemovie script
+def reader():
+ url = "https://raw.githubusercontent.com/shortpupper/image/master/beemovie.txt"
+ # request the data
+ r = requests.get(url)
+ # then return the text
+ return r.text
+
+
+j = reader()
+j =j.upper()
+
+# doimage(j, "bee2")
+
+# print(readimage(os.getcwd()+"/bees.png"))
+
